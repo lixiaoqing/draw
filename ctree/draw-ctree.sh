@@ -3,6 +3,6 @@ if [ $# = 0 ];then
 	exit 0
 fi
 set -x
-python draw-tree.py $1 $2
+python /home/xqli/tools/draw/ctree/draw-ctree.py $1 $2
 pdflatex tree.tex > /dev/null
 rm tree.tex tree.aux tree.log
