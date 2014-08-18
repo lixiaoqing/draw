@@ -1,5 +1,5 @@
 if [ $# = 0 ];then
-	echo "usage: draw-tree.sh figure-type(0/1) parse-file line-num"
+	echo "usage: draw-ctree.sh figure-type(0/1) parse-file line-num"
 	exit 0
 fi
 set -x
