@@ -35,8 +35,9 @@ for s in open(parse_file):
         dep_str = ''
     else:
         s = s.split()
-        #dep,word,pos,head,rel = int(s[0]),s[1],s[3],int(s[6]),s[7]
-        dep_str += ' '.join([s[1],s[3],s[6],s[7]])+'\n'
+        self,word,pos,head,rel = int(s[0]),s[1],s[3],int(s[6]),s[7]
+        dep_str += ' '.join([word,pos,str(max(2*head-1,0)),rel])+'\n'
+        dep_str += ' '.join([word,pos,str(2*self-1),'MOD'])+'\n'
 
 print >>fout,r'''
 \end{scope}

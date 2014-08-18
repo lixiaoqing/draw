@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.8.7)  18 AUG 2014 22:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2014.8.7)  18 AUG 2014 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,7 +838,7 @@ File: UTF8.enc 2012/05/07 4.8.3
 (/usr/share/texmf/tex/latex/CJK/UTF8/UTF8.chr
 File: UTF8.chr 2012/05/07 4.8.3
 )
-LaTeX Font Info:    Try loading font information for C70+gbsn on input line 15.
+LaTeX Font Info:    Try loading font information for C70+gbsn on input line 26.
 
 
 (/usr/share/texmf/tex/latex/CJK/UTF8/c70gbsn.fd
@@ -850,13 +850,13 @@ File: c70gbsn.fdx 2012/05/07 4.8.3
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./tree.aux) ) 
 Here is how much of TeX's memory you used:
- 13516 strings out of 494565
- 258498 string characters out of 6172768
- 299777 words of memory out of 5000000
- 16537 multiletter control sequences out of 15000+600000
+ 13692 strings out of 494565
+ 261599 string characters out of 6172768
+ 318690 words of memory out of 5000000
+ 16713 multiletter control sequences out of 15000+600000
  7062 words of font info for 26 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 62i,10n,56p,409b,1433s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,10n,58p,409b,1503s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/f
 onts/type1/arphic/gbsnu/gbsnu4f.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/
@@ -868,7 +868,7 @@ texmf/fonts/type1/arphic/gbsnu/gbsnu5b.pfb></usr/share/texmf/fonts/type1/arphic
 b></usr/share/texmf/fonts/type1/arphic/gbsnu/gbsnu89.pfb></usr/share/texmf/font
 s/type1/arphic/gbsnu/gbsnu8b.pfb></usr/share/texmf/fonts/type1/arphic/gbsnu/gbs
 nu97.pfb>
-Output written on tree.pdf (1 page, 44381 bytes).
+Output written on tree.pdf (1 page, 45069 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream

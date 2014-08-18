@@ -8,10 +8,21 @@
 \begin{CJK}{UTF8}{gbsn}
 
 \begin{tikzpicture}
-\begin{scope}
+\begin{scope}[frontier/.style={distance from root=140}]
+
 \Tree [.开展
-        [.规模 伊犁 大 ]
-        [.活动 “ [.面对面 ” ] 宣讲 ] ]
+        [.规模
+          [.伊犁 \edge[dashed]; {伊犁} ]
+          [.大 \edge[dashed]; {大} ]
+          \edge[dashed]; {规模} ]
+        \edge[dashed]; {开展}
+        [.活动
+          [.“ \edge[dashed]; {“} ]
+          [.面对面
+            \edge[dashed]; {面对面}
+            [.” \edge[dashed]; {”} ] ]
+          [.宣讲 \edge[dashed]; {宣讲} ]
+          \edge[dashed]; {活动} ] ]
 
 \end{scope}
 \end{tikzpicture}
