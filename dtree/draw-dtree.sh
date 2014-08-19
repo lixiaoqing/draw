@@ -1,5 +1,5 @@
 if [ $# = 0 ];then
-	echo "usage: draw-dtree.sh figure-type dep-file line-num"
+	echo "usage: draw-dtree.sh figure-type(0/1/2) dep-file line-num"
 	exit 0
 fi
 set -x

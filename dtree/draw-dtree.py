@@ -7,11 +7,11 @@ def traverse(t,h,fid):
         t.node
     except AttributeError:
         x,w = t.split('-')
-        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,x,1.5*h,w)
+        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,0.6*xpos[int(x)],1.5*h,w)
         print >>fout,'\\draw (n{}) -- (n{});'.format(fid,x)
     else:
         x,w = t.node.split('-')
-        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,x,1.5*h,w)
+        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,0.6*xpos[int(x)],1.5*h,w)
         if fid != 0:
             print >>fout,'\\draw (n{}) -- (n{});'.format(fid,x)
         for child in t:
@@ -70,6 +70,7 @@ else:
     i = -1
     dep_str = ''
     wids = []
+    wlens,xpos = [0],[0]
     for s in open(parse_file):
         if len(s.strip()) == 0:
             i += 1
@@ -80,17 +81,20 @@ else:
                     h = tree.height()
                     traverse(tree,h,0)
                     for k,w in wids:
-                        print >>fout,'\\node(m{}) at({},{}) {{{}}};'.format(k,k,0,w)
+                        print >>fout,'\\node(m{}) at({},{}) {{{}}};'.format(k,0.6*xpos[k],0,w)
                         print >>fout,'\\draw[dotted] (m{}) -- (n{});'.format(k,k)
                 else:
                     print >>fout,tree.pprint_latex_qtree()
                 break
             dep_str = ''
             wids = []
+            wlens,xpos = [0],[0]
         else:
             s = s.split()
             idx,word,pos,head,rel = int(s[0]),s[1],s[3],int(s[6]),s[7]
             wids.append((idx,word))
+            wlens.append(len(word.decode('utf8')))
+            xpos.append(0.5*(wlens[-1]+wlens[-2])+xpos[-1])
             dep_str += ' '.join([str(idx)+'-'+word,pos,str(head),rel])+'\n'
     
     print >>fout,r'''
