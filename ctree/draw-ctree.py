@@ -25,7 +25,7 @@ for i,s in enumerate(f):
             h = tree.height()
             print >>fout,'''\\begin{{scope}}[frontier/.style={{distance from root={}}}]\n'''.format(h*28)
             for pos in tree.treepositions('leaves'):
-	        tree[pos] = r'\edge[dashed]; {' + tree[pos] + '}'
+	        tree[pos] = r'\edge[dotted]; {' + tree[pos] + '}'
         else:
             print >>fout,r'\begin{scope}'
         print >>fout,tree.pprint_latex_qtree()
