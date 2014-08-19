@@ -2,6 +2,21 @@ import sys
 from collections import defaultdict
 from nltk.parse import DependencyGraph
 
+def traverse(t,h,fid): 
+    try:
+        t.node
+    except AttributeError:
+        x,w = t.split('-')
+        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,x,1.5*h,w)
+        print >>fout,'\\draw (n{}) -- (n{});'.format(fid,x)
+    else:
+        x,w = t.node.split('-')
+        print >>fout,'\\node(n{}) at({},{}) {{{}}};'.format(x,x,1.5*h,w)
+        if fid != 0:
+            print >>fout,'\\draw (n{}) -- (n{});'.format(fid,x)
+        for child in t:
+            traverse(child,h-1,x)
+
 flag = sys.argv[1]
 parse_file = sys.argv[2]
 line_num = int(sys.argv[3])
@@ -17,7 +32,7 @@ print >>fout,r'''\documentclass[tikz]{standalone}
 \begin{CJK}{UTF8}{gbsn}
 '''
 
-if flag == '0':
+if flag == '1':
     print >>fout,r'''\begin{dependency}[theme = simple]
 \begin{deptext}[column sep=1em] '''
     head2children = defaultdict(list)
@@ -54,6 +69,7 @@ else:
     print >>fout,r'''\begin{tikzpicture}'''
     i = -1
     dep_str = ''
+    wids = []
     for s in open(parse_file):
         if len(s.strip()) == 0:
             i += 1
@@ -62,24 +78,22 @@ else:
                 tree = dg.tree()
                 if flag == '0':
                     h = tree.height()
-                    #print >>fout,'''\\begin{{scope}}[frontier/.style={{distance from root={}}}]\n'''.format(h*28)
-                    print >>fout,'''\\begin{{scope}}\n'''.format(h*28)
-                    for pos in tree.treepositions('leaves'):
-    	                tree[pos] = r'\edge[dashed]; {' + tree[pos] + '}'
+                    traverse(tree,h,0)
+                    for k,w in wids:
+                        print >>fout,'\\node(m{}) at({},{}) {{{}}};'.format(k,k,0,w)
+                        print >>fout,'\\draw[dotted] (m{}) -- (n{});'.format(k,k)
                 else:
-                    print >>fout,r'\begin{scope}'
-                print >>fout,tree.pprint_latex_qtree()
+                    print >>fout,tree.pprint_latex_qtree()
                 break
             dep_str = ''
+            wids = []
         else:
             s = s.split()
-            self,word,pos,head,rel = int(s[0]),s[1],s[3],int(s[6]),s[7]
-            dep_str += ' '.join([word,pos,str(head),rel])+'\n'
-            #dep_str += ' '.join([word,pos,str(max(2*head-1,0)),rel])+'\n'
-            #dep_str += ' '.join([word,pos,str(2*self-1),'MOD'])+'\n'
+            idx,word,pos,head,rel = int(s[0]),s[1],s[3],int(s[6]),s[7]
+            wids.append((idx,word))
+            dep_str += ' '.join([str(idx)+'-'+word,pos,str(head),rel])+'\n'
     
     print >>fout,r'''
-\end{scope}
 \end{tikzpicture}
 \end{CJK}
 \end{document}
