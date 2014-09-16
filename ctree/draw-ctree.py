@@ -20,27 +20,23 @@ f = open(parse_file)
 for i,s in enumerate(f):
     if i == line_num:
         s = s.replace('$','\$')
-        ws = s.split()
-        ws1 = []
-        idx = 0
-        for i in range(len(ws)-1):
-            if ws[i] != ')' and ws[i+1] == ')':
-                ws1.append( '( {} {} )'.format(ws[i],idx) )
-                idx += 1
-            else:
-                ws1.append(ws[i])
-        ws1.append(ws[-1])
-        if flag == '0':
-            s = ' '.join(ws1)
         tree = Tree.parse(s)
-        if flag in '01':
+        if flag == '0':
             h = tree.height()
             print >>fout,'''\\begin{{scope}}[frontier/.style={{distance from root={}}}]\n'''.format(h*28)
             for pos in tree.treepositions('leaves'):
 	        tree[pos] = r'\edge[dotted]; {' + tree[pos] + '}'
+            idx = 0
+            for line in tree.pprint_latex_qtree().split('\n'):
+                if ';' in line:
+                    line = line.replace('{','\\node(n{}) {{'.format(idx)).replace('}','};')
+                    idx += 1
+                print >>fout,line
+            for i in range(idx):
+                print >>fout,'\draw (n{} |- 0,{}pt) node {{{}}};'.format(i,-h*28-10,i)
         else:
             print >>fout,r'\begin{scope}'
-        print >>fout,tree.pprint_latex_qtree()
+            print >>fout,tree.pprint_latex_qtree()
         break
 print >>fout,r'''
 \end{scope}
