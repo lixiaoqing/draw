@@ -82,6 +82,7 @@ else:
                     traverse(tree,h,0)
                     for k,w in wids:
                         print >>fout,'\\node(m{}) at({},{}) {{{}}};'.format(k,0.6*xpos[k],0,w)
+                        print >>fout,'\\node at({},{}) {{{}}};'.format(0.6*xpos[k],-0.5,k-1)
                         print >>fout,'\\draw[dotted] (m{}) -- (n{});'.format(k,k)
                 else:
                     print >>fout,tree.pprint_latex_qtree()
