@@ -29,7 +29,7 @@ for i,s in enumerate(f):
             idx = 0
             for line in tree.pprint_latex_qtree().split('\n'):
                 if ';' in line:
-                    line = line.replace('{','\\node(n{}) {{'.format(idx)).replace('}','};')
+                    line = line.replace('{','\\node(n{}) {{'.format(idx)).replace('}','};').replace('%','\%')
                     idx += 1
                 print >>fout,line
             for i in range(idx):

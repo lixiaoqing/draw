@@ -6,3 +6,4 @@ set -x
 python /home/xqli/tools/draw/ctree/draw-ctree.py $1 $2 $3
 pdflatex tree.tex > /dev/null
 rm tree.tex tree.aux tree.log
+mv tree.pdf tree$3.pdf
